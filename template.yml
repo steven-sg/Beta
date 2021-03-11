@@ -24,9 +24,14 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:
+      CodeUri: ./index.js
       FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-GetHelloWorld'
       Handler: index.get
       Runtime: nodejs12.x
@@ -40,6 +45,8 @@ Resources:
           Properties:
             Path: /
             Method: get
+            RestApiId:
+              Ref: ApiGatewayApi
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role

@@ -35,8 +35,7 @@ Resources:
         DefaultAuthorizer: DefaultCognitoAuthorizer
         Authorizers:
           DefaultCognitoAuthorizer:
-            UserPoolArn:
-              Fn::GetAtt: arn:aws:cognito-idp:eu-west-1:701812189816:userpool/eu-west-1_ma0c2uawc
+            UserPoolArn: arn:aws:cognito-idp:eu-west-1:701812189816:userpool/eu-west-1_ma0c2uawc
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:

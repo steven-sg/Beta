@@ -2,6 +2,11 @@ openapi: "3.0.1"
 info:
   title: "awscodestar-beta-infrastructure"
   version: "1.0"
+servers:
+- url: "https://blygk2u464.execute-api.eu-west-1.amazonaws.com/{basePath}"
+  variables:
+    basePath:
+      default: "/Prod"
 paths:
   /login:
     get:

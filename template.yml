@@ -27,6 +27,9 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
+      Domain:
+        CertificateArn: arn:aws:acm:eu-west-1:701812189816:certificate/044f17f8-1e7e-47c9-b22d-b4d2f848b83a
+        DomainName: steven-sg.com
       StageName: Prod
   GetHelloWorld:
     Type: AWS::Serverless::Function

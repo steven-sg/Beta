@@ -31,7 +31,6 @@ Resources:
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: ./index.js
       FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-GetHelloWorld'
       Handler: index.get
       Runtime: nodejs12.x

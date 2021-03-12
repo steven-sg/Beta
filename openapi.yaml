@@ -33,3 +33,8 @@ paths:
         "200":
           description: "200 response"
           content: {}
+
+x-amazon-apigateway-request-validators:
+  Validate query string parameters and headers:
+    validateRequestParameters: true
+    validateRequestBody: false

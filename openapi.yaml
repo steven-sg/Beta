@@ -1,0 +1,35 @@
+openapi: "3.0.1"
+info:
+  title: "awscodestar-beta-infrastructure"
+  version: "1.0"
+paths:
+  /login:
+    get:
+      parameters:
+      - name: "id_token"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content: {}
+      x-amazon-apigateway-request-validator: "Validate query string parameters and\
+        \ headers"
+      x-amazon-apigateway-integration:
+        httpMethod: "GET"
+        uri: "https://steven-sg.com"
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.header.Authorization: "method.request.querystring.id_token"
+        passthroughBehavior: "when_no_match"
+        type: "http_proxy"
+  /:
+    get:
+      responses:
+        "200":
+          description: "200 response"
+          content: {}

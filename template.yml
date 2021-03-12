@@ -36,6 +36,7 @@ Resources:
         Authorizers:
           DefaultCognitoAuthorizer:
             UserPoolArn: arn:aws:cognito-idp:eu-west-1:701812189816:userpool/eu-west-1_ma0c2uawc
+      DefinitionUri: openapi.yaml
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:

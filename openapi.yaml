@@ -11,8 +11,7 @@ paths:
           content: {}
       x-amazon-apigateway-integration:
         httpMethod: "POST"
-        uri:
-          Fn::Sub: "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/${LoginLambda.Arn}/invocations"
+        uri: "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:701812189816:function:awscodestar-beta-lambda-GetHelloWorld:live/invocations"
         passthroughBehavior: "when_no_match"
         type: "aws_proxy"
   /:

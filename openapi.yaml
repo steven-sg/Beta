@@ -5,26 +5,16 @@ info:
 paths:
   /login:
     get:
-      parameters:
-      - name: "id_token"
-        in: "query"
-        required: true
-        schema:
-          type: "string"
       responses:
         "200":
           description: "200 response"
           content: {}
-      x-amazon-apigateway-request-validator: "Validate query string parameters and\
-        \ headers"
       x-amazon-apigateway-integration:
         httpMethod: "GET"
         uri: "https://steven-sg.com"
         responses:
           default:
             statusCode: "200"
-        requestParameters:
-          integration.request.header.Authorization: "method.request.querystring.id_token"
         passthroughBehavior: "when_no_match"
         type: "http_proxy"
   /:
@@ -34,10 +24,11 @@ paths:
           description: "200 response"
           content: {}
       security:
-      - DefaultCognitoAuthorizer: []
+        - DefaultCognitoAuthorizer: []
       x-amazon-apigateway-integration:
         httpMethod: "POST"
-        uri: "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/arn:aws:lambda:eu-west-1:701812189816:function:awscodestar-beta-lambda-GetHelloWorld:live/invocations"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/${LoginLambda.Arn}/invocations"
         passthroughBehavior: "when_no_match"
         type: "aws_proxy"
 components:
@@ -49,7 +40,7 @@ components:
       x-amazon-apigateway-authtype: "cognito_user_pools"
       x-amazon-apigateway-authorizer:
         providerARNs:
-        - "arn:aws:cognito-idp:eu-west-1:701812189816:userpool/eu-west-1_ma0c2uawc"
+          - "arn:aws:cognito-idp:eu-west-1:701812189816:userpool/eu-west-1_ma0c2uawc"
         type: "cognito_user_pools"
 x-amazon-apigateway-request-validators:
   Validate query string parameters and headers:

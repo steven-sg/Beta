@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform:
-- AWS::Serverless-2016-10-31
-- AWS::CodeStar
+  - AWS::Serverless-2016-10-31
+  - AWS::CodeStar
 
 Parameters:
   ProjectId:
@@ -13,7 +13,7 @@ Parameters:
   Stage:
     Type: String
     Description: The name for a project pipeline stage, such as Staging or Prod, for which resources are provisioned and deployed.
-    Default: ''
+    Default: ""
 
 Globals:
   Function:
@@ -35,13 +35,13 @@ Resources:
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-GetHelloWorld'
+      FunctionName: !Sub "awscodestar-${ProjectId}-lambda-GetHelloWorld"
       Handler: index.get
       Runtime: nodejs12.x
       Role:
         Fn::GetAtt:
-        - LambdaExecutionRole
-        - Arn
+          - LambdaExecutionRole
+          - Arn
       Events:
         GetEvent:
           Type: Api
@@ -50,18 +50,37 @@ Resources:
             Method: get
             RestApiId:
               Ref: ApiGatewayApi
+  LoginLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: ${ProjectId}-lambda-Login
+      Handler: src/lambda/login_handler.post
+      Runtime: nodejs12.x
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /login
+            Method: post
+            RestApiId:
+              Ref: ApiGatewayApi
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub 'CodeStar-${ProjectId}-Execution${Stage}'
+      RoleName: !Sub "CodeStar-${ProjectId}-Execution${Stage}"
       AssumeRolePolicyDocument:
         Statement:
-        - Effect: Allow
-          Principal:
-            Service: [lambda.amazonaws.com]
-          Action: sts:AssumeRole
+          - Effect: Allow
+            Principal:
+              Service: [lambda.amazonaws.com]
+            Action: sts:AssumeRole
       Path: /
       ManagedPolicyArns:
-        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
-      PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary'
+        - !Sub "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+      PermissionsBoundary: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary"

@@ -31,7 +31,11 @@ Resources:
         CertificateArn: arn:aws:acm:eu-west-1:701812189816:certificate/044f17f8-1e7e-47c9-b22d-b4d2f848b83a
         DomainName: steven-sg.com
       StageName: Prod
-      DefinitionUri: openapi.yaml
+      DefinitionBody:
+        Fn::Transform:
+          Name: AWS::Include
+          Parameters:
+            Location: openapi.yaml
   GetHelloWorld:
     Type: AWS::Serverless::Function
     Properties:

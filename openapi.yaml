@@ -4,7 +4,7 @@ info:
   version: "1.0"
 paths:
   /login:
-    post:
+    get:
       responses:
         "200":
           description: "200 response"

@@ -59,7 +59,7 @@ Resources:
     Properties:
       FunctionName:
         Fn::Sub: ${ProjectId}-lambda-Login
-      Handler: src/lambda/login_handler.post
+      Handler: src/lambda/login_handler.get
       Runtime: nodejs12.x
       Role:
         Fn::GetAtt:

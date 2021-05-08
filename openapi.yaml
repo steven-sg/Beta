@@ -9,6 +9,8 @@ paths:
         "200":
           description: "200 response"
           content: {}
+      security:
+        - DefaultCognitoAuthorizer: []
       x-amazon-apigateway-integration:
         httpMethod: "POST"
         uri:

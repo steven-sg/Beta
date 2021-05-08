@@ -24,6 +24,10 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
+  Route53HostedZone:
+    Type: "AWS::Route53::HostedZone"
+    Properties:
+      Name: steven-sg.com
   DomainCertificate:
     Type: AWS::CertificateManager::Certificate
     Properties:

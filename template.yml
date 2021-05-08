@@ -39,6 +39,8 @@ Resources:
       Domain:
         CertificateArn: !Ref DomainCertificate
         DomainName: steven-sg.com
+        Route53:
+          HostedZoneId: !Ref Route53HostedZone
       StageName: Prod
       DefinitionBody:
         Fn::Transform:

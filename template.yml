@@ -34,6 +34,11 @@ Resources:
         - email
       AliasAttributes:
         - email
+  CognitoUserPoolClient:
+    Type: "AWS::Cognito::UserPoolClient"
+    Properties:
+      ClientName: beta-client
+      UserPoolId: !Ref CognitoUserPool
   Route53HostedZone:
     Type: "AWS::Route53::HostedZone"
     Properties:

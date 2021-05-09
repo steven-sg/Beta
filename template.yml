@@ -24,6 +24,16 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
+  CognitoUserPool:
+    Type: "AWS::Cognito::UserPool"
+    Properties:
+      UserPoolName: beta-user-pool
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: false
+      AutoVerifiedAttributes:
+        - email
+      AliasAttributes:
+        - email
   Route53HostedZone:
     Type: "AWS::Route53::HostedZone"
     Properties:

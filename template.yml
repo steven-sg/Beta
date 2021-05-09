@@ -51,7 +51,7 @@ Resources:
         - openid
       ClientName: beta-client
       CallbackURLs:
-        - auth.steven-sg.com
+        - https://auth.steven-sg.com
       SupportedIdentityProviders:
         - COGNITO
       UserPoolId: !Ref CognitoUserPool

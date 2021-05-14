@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources:
+  DomainCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: steven-sg.com
+      SubjectAlternativeNames:
+        - auth.steven-sg.com
+      ValidationMethod: DNS

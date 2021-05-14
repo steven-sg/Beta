@@ -24,6 +24,13 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
+  DomainCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: steven-sg.com
+      SubjectAlternativeNames:
+        - auth.steven-sg.com
+      ValidationMethod: DNS
   CognitoUserPool:
     Type: "AWS::Cognito::UserPool"
     Properties:
@@ -37,17 +44,28 @@ Resources:
   CognitoUserPoolClient:
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
+      AllowedOAuthFlows:
+        - code
+      AllowedOAuthScopes:
+        - email
+        - openid
       ClientName: beta-client
+      CallbackURLs:
+        - https://auth.steven-sg.com
+      SupportedIdentityProviders:
+        - COGNITO
       UserPoolId: !Ref CognitoUserPool
+  CognitoUserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    Properties:
+      CustomDomainConfig:
+        CertificateArn: arn:aws:acm:us-east-1:701812189816:certificate/c80ed540-aa4e-4643-94f7-9d1a134749a1
+      UserPoolId: !Ref CognitoUserPool
+      Domain: "auth.steven-sg.com"
   Route53HostedZone:
     Type: "AWS::Route53::HostedZone"
     Properties:
       Name: steven-sg.com
-  DomainCertificate:
-    Type: AWS::CertificateManager::Certificate
-    Properties:
-      DomainName: steven-sg.com
-      ValidationMethod: DNS
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:

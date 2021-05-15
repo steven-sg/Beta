@@ -71,7 +71,7 @@ Resources:
     Type: AWS::Route53::RecordSet
     Properties:
       HostedZoneId : !Ref Route53HostedZone
-      Name: auth.example.com
+      Name: auth.steven-sg.com
       ResourceRecords:
         - d3f1t0kbnbj7ey.cloudfront.net
       Type: CNAME

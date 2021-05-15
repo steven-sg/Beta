@@ -46,6 +46,7 @@ Resources:
     Properties:
       AllowedOAuthFlows:
         - code
+      AllowedOAuthFlowsUserPoolClient: true
       AllowedOAuthScopes:
         - email
         - openid

@@ -75,6 +75,7 @@ Resources:
       ResourceRecords:
         - d3f1t0kbnbj7ey.cloudfront.net
       Type: CNAME
+      TTL: 300
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:

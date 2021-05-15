@@ -45,7 +45,7 @@ Resources:
     Type: "AWS::Cognito::UserPoolClient"
     Properties:
       AllowedOAuthFlows:
-        - code
+        - implicit
       AllowedOAuthFlowsUserPoolClient: true
       AllowedOAuthScopes:
         - email

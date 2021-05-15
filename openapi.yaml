@@ -36,7 +36,8 @@ paths:
         - DefaultCognitoAuthorizer: []
       x-amazon-apigateway-integration:
         httpMethod: "POST"
-        uri: "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/${StatisticsLambda.Arn}:live/invocations"
+        uri:
+          Fn::Sub: "arn:aws:apigateway:eu-west-1:lambda:path/2015-03-31/functions/${StatisticsLambda.Arn}:live/invocations"
         passthroughBehavior: "when_no_match"
         type: "aws_proxy"
 components:

@@ -143,7 +143,7 @@ Resources:
           Type: Api
           Properties:
             Path: /statistics
-            Method: post
+            Method: get
             RestApiId:
               Ref: ApiGatewayApi
   LambdaExecutionRole:

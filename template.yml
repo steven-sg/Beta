@@ -67,6 +67,14 @@ Resources:
     Type: "AWS::Route53::HostedZone"
     Properties:
       Name: steven-sg.com
+  Route53DomainAliasRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId : !Ref Route53HostedZone
+      Name: auth.example.com
+      ResourceRecords:
+        - d3f1t0kbnbj7ey.cloudfront.net
+      Type: CNAME
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:

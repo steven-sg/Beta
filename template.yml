@@ -127,6 +127,25 @@ Resources:
             Method: post
             RestApiId:
               Ref: ApiGatewayApi
+  StatisticsLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: ${ProjectId}-lambda-statistics
+      Handler: src/lambda/statistics_handler.get
+      Runtime: nodejs12.x
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
+      Events:
+        GetEvent:
+          Type: Api
+          Properties:
+            Path: /statistics
+            Method: get
+            RestApiId:
+              Ref: ApiGatewayApi
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role

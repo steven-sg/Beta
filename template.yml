@@ -76,9 +76,31 @@ Resources:
         - d3f1t0kbnbj7ey.cloudfront.net
       Type: CNAME
       TTL: 300
+  LambdaAuthorizer:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName:
+        Fn::Sub: ${ProjectId}-lambda-authorizer
+      Handler: src/lambda/authorizer_handler.handler
+      Runtime: nodejs12.x
+      Role:
+        Fn::GetAtt:
+          - LambdaExecutionRole
+          - Arn
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
+      Auth:
+        DefaultAuthorizer: DefaultCognitoLambdaAuthorizer
+        Authorizers:
+          DefaultCognitoLambdaAuthorizer:
+            FunctionArn:
+              Fn::GetAtt:
+                - LambdaAuthorizer
+                - Arn
+            Identity:
+              Header: Cookie
+              ValidationExpression: ".*id_token=.*"
       Domain:
         CertificateArn: !Ref DomainCertificate
         DomainName: steven-sg.com

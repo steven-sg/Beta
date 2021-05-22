@@ -194,4 +194,4 @@ Resources:
             Action:
               - quicksight:GetDashboardEmbedUrl
               - quickSight:GetAnonymousUserEmbedUrl
-            Resource: *
+            Resource: "*"

@@ -183,3 +183,15 @@ Resources:
       ManagedPolicyArns:
         - !Sub "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
       PermissionsBoundary: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary"
+  QuickSightEmbeddedAccessRole:
+    Description: Access role for anonymous QuickSight usage
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${ProjectId}-${Stage}-QuickSight-access"
+      RolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Action:
+              - quicksight:GetDashboardEmbedUrl
+              - quickSight:GetAnonymousUserEmbedUrl
+            Resource: *

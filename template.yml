@@ -208,5 +208,5 @@ Resources:
               - quicksight:GetDashboardEmbedUrl
               - quickSight:GetAnonymousUserEmbedUrl
             Resource: "*"
-        Roles:
-          - Ref: "QuickSightEmbeddedAccessRole"
+      Roles:
+        - Ref: "QuickSightEmbeddedAccessRole"

@@ -188,10 +188,19 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: !Sub "${ProjectId}-${Stage}-QuickSight-access"
-      RolePolicyDocument:
+      Path: /
+  QuickSightEmbeddedAccessRolePolicy:
+    Description: Role policy for anonymous QuickSight usage
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub "${ProjectId}-${Stage}-QuickSight-access-policy"
+      PolicyDocument:
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Action:
               - quicksight:GetDashboardEmbedUrl
               - quickSight:GetAnonymousUserEmbedUrl
             Resource: "*"
+        Roles:
+          - Ref: "QuickSightEmbeddedAccessRole"

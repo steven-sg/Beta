@@ -188,6 +188,12 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: !Sub "${ProjectId}-${Stage}-QuickSight-access"
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [lambda.amazonaws.com]
+            Action: sts:AssumeRole
       Path: /
   QuickSightEmbeddedAccessRolePolicy:
     Description: Role policy for anonymous QuickSight usage

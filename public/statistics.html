@@ -4,10 +4,25 @@
     <meta charset="utf-8" />
     <title>Statistics</title>
     <meta name="description" content="" />
+    <script src="https://unpkg.com/amazon-quicksight-embedding-sdk@1.0.15/dist/quicksight-embedding-js-sdk.min.js"></script>
+    <script type="text/javascript">
+      var dashboard;
+
+      function embedDashboard() {
+          var containerDiv = document.getElementById("embeddingContainer");
+          var options = {
+              // replace this dummy url with the one generated via embedding API
+              url: "<%= embeddedDashboardUrl %>",
+              container: containerDiv,
+              scrolling: "no",
+              footerPaddingEnabled: true
+          };
+          dashboard = QuickSightEmbedding.embedDashboard(options);
+      }
+    </script>
   </head>
 
-  <body class="">
-    <div id="wrapper"></div>
-    <script src="https://unpkg.com/amazon-quicksight-embedding-sdk@1.0.15/dist/quicksight-embedding-js-sdk.min.js"></script>
+  <body onload="embedDashboard()">
+    <div id="embeddingContainer"></div>
   </body>
 </html>

@@ -11,7 +11,7 @@ exports.get = function (event, context, callback) {
     headers: {
       "content-type": "text/html",
       "Content-Security-Policy":
-        "default-src 'unsafe-inline' https://us-east-1.quicksight.aws.amazon.com https://s3-eu-west-1.amazonaws.com https://unpkg.com; frame-ancestors https://*.quicksight.aws.amazon.com",
+        "default-src 'unsafe-inline' https://eu-west-1.quicksight.aws.amazon.com https://s3-eu-west-1.amazonaws.com https://unpkg.com; frame-ancestors https://*.quicksight.aws.amazon.com",
     },
   };
 

@@ -2,7 +2,7 @@
   margin: 0;
 }
 
-html, body {
+html, body, #embeddingContainer {
   height: 100%;
 }
 

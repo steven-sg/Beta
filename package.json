@@ -11,6 +11,7 @@
         "test": "mocha --recursive tests"
     },
     "dependencies": {
+        "ejs": "^3.1.6",
         "jsonwebtoken": "^8.5.1",
         "jwks-rsa": "^2.0.3"
     }
